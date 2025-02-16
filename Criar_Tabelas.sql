@@ -1,6 +1,10 @@
 -- Banco de dados: app_corridas
 -- Descrição: Armazena dados do aplicativo de corridas.
+
+
+-- Criando novo banco de dados
 CREATE DATABASE IF NOT EXISTS app_corridas;
+
 
 
 -- Tabela: Passageiro
@@ -28,7 +32,8 @@ CREATE TABLE IF NOT EXISTS veiculo(
     placa VARCHAR(10) NOT NULL,
     modelo VARCHAR(10) NOT NULL,
     cor VARCHAR(20),
-    capacidade INT NOT NULL
+    capacidade INT NOT NULL,
+    cpf_motorista VARCHAR(11)
 );
 DESC veiculo;
 
@@ -37,7 +42,9 @@ CREATE TABLE IF NOT EXISTS avaliacao(
     id_avaliacao INT PRIMARY KEY,
     nota INT NOT NULL,
     comentario VARCHAR(100),
-    data_avaliacao DATE NOT NULL
+    data_avaliacao DATE NOT NULL,
+    cpf_motorista VARCHAR(11),
+    cpf_passageiro VARCHAR(11)
 );
 DESC avaliacao;
 
@@ -48,7 +55,10 @@ CREATE TABLE IF NOT EXISTS localizacao(
     longitude DECIMAL(9,6) NOT NULL,
     bairro VARCHAR(100),
     rua VARCHAR(100),
-    numero INT
+    numero INT,
+    cpf_motorista VARCHAR(11),
+    cpf_passageiro VARCHAR(11),
+    id_corrida INT
 );
 DESC localizacao;
 
@@ -57,7 +67,8 @@ CREATE TABLE IF NOT EXISTS pagamento(
     id_pagamento INT PRIMARY KEY,
     valor DECIMAL(5,2) NOT NULL,
     forma_pagamento ENUM("Dinheiro", "Cartão de crédito", "Cartão de débito", "Pix") NOT NULL,
-    status ENUM("Pendente", "Pago", "Cancelado") NOT NULL
+    status ENUM("Pendente", "Pago", "Cancelado") NOT NULL,
+    cpf_passageiro VARCHAR(11)
 );
 DESC pagamento;
 
@@ -66,14 +77,42 @@ CREATE TABLE IF NOT EXISTS corrida(
     id_corrida INT PRIMARY KEY,
     distancia DECIMAL(5,2),
     valor DECIMAL(5,2),
-    status ENUM("Solicitada", "Em andamento", "Finalizada", "Cancelada")
+    status ENUM("Solicitada", "Em andamento", "Finalizada", "Cancelada"),
+    cpf_motorista VARCHAR(11),
+    id_pagamento INT
 );
 DESC corrida;
 
 -- Tabela N:N da relação: Passageiro e Corrida
-CREATE TABLE IF NOT EXISTS passageiro_corrida(
-    cpf_passageiro_fk VARCHAR(11) NOT NULL,
-    id_corrida_fk INT NOT NULL,
-    PRIMARY KEY (cpf_passageiro_fk, id_corrida_fk)
+CREATE TABLE IF NOT EXISTS passageiro_corrida (
+    cpf_passageiro VARCHAR(11) NOT NULL,
+    id_corrida INT NOT NULL,
+    PRIMARY KEY (cpf_passageiro, id_corrida)
 );
 DESC passageiro_corrida;
+
+
+
+
+-- Chave estrangeira Veiculo
+ALTER TABLE veiculo ADD CONSTRAINT veiculo_motorista_fk FOREIGN KEY (cpf_motorista) REFERENCES motorista(cpf);
+
+-- Chaves estrangeiras Avaliacao
+ALTER TABLE avaliacao ADD CONSTRAINT avaliacao_passageiro_fk FOREIGN KEY (cpf_passageiro) REFERENCES passageiro(cpf);
+ALTER TABLE avaliacao ADD CONSTRAINT avaliacao_motorista_fk FOREIGN KEY (cpf_motorista) REFERENCES motorista(cpf);
+
+-- Chaves estrangeiras Localizacao
+ALTER TABLE localizacao ADD CONSTRAINT localizacao_passageiro_fk FOREIGN KEY (cpf_passageiro) REFERENCES passageiro(cpf);
+ALTER TABLE localizacao ADD CONSTRAINT localizacao_motorista_fk FOREIGN KEY (cpf_motorista) REFERENCES motorista(cpf);
+ALTER TABLE localizacao ADD CONSTRAINT localizacao_corrida_fk FOREIGN KEY (id_corrida) REFERENCES corrida(id_corrida);
+
+-- Chave estrangeira Pagamento
+ALTER TABLE pagamento ADD CONSTRAINT pagamento_passageiro_fk FOREIGN KEY (cpf_passageiro) REFERENCES passageiro(cpf);
+
+-- Chaves estrangeiras Corrida
+ALTER TABLE corrida ADD CONSTRAINT corrida_motorista_fk FOREIGN KEY (cpf_motorista) REFERENCES motorista(cpf);
+ALTER TABLE corrida ADD CONSTRAINT corrida_pagamento_fk FOREIGN KEY (id_pagamento) REFERENCES pagamento(id_pagamento);
+
+-- Chaves estrangeiras N:N Passageiro e Corrida
+ALTER TABLE passageiro_corrida ADD CONSTRAINT pc_passageiro_fk FOREIGN KEY (cpf_passageiro) REFERENCES passageiro(cpf);
+ALTER TABLE passageiro_corrida ADD CONSTRAINT pc_corrida_fk FOREIGN KEY (id_corrida) REFERENCES corrida(id_corrida);
