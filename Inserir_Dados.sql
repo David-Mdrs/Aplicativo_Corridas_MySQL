@@ -75,3 +75,13 @@ INSERT INTO corrida (id_corrida, distancia, valor, status, cpf_motorista, id_pag
   (5, 8.0, 40.00, 'Cancelada', '567.890.123-45', 5),
   (6, 7.5, 35.25, 'Finalizada', '678.901.234-56', 6);
 SELECT * FROM corrida;
+
+-- Inserindo dados na tabela N:N Passageiro e Corrida
+INSERT INTO passageiro_corrida (cpf_passageiro, id_corrida) VALUES
+  ('111.111.111-11', 1),
+  ('222.222.222-22', 2),
+  ('333.333.333-33', 3),
+  ('444.444.444-44', 4),
+  ('555.555.555-55', 5),
+  ('666.666.666-66', 6);
+SELECT * FROM passageiro_corrida;
