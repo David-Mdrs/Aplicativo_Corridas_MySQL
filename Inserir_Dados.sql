@@ -35,3 +35,13 @@ INSERT INTO veiculo (renavam, placa, modelo, cor, capacidade, cpf_motorista) VAL
   ('56789012345', 'MNO-7890', 'HB20', 'Azul', 5, '567.890.123-45'),
   ('67890123456', 'PQR-1234', 'Cruze', 'Cinza', 4, '678.901.234-56');
 SELECT * FROM veiculo;
+
+-- Inserindo dados na tabela Avaliacao
+INSERT INTO avaliacao (id_avaliacao, nota, comentario, data_avaliacao, cpf_motorista, cpf_passageiro) VALUES
+  (1, 5, 'Ótimo motorista!', '2023-10-01', '123.456.789-01', '111.111.111-11'),
+  (2, 4, 'Bom serviço.', '2023-10-02', '234.567.890-12', '222.222.222-22'),
+  (3, 3, 'Poderia ser melhor.', '2023-10-03', '345.678.901-23', '333.333.333-33'),
+  (4, 5, 'Excelente!', '2023-10-04', '456.789.012-34', '444.444.444-44'),
+  (5, 2, 'Não gostei.', '2023-10-05', '567.890.123-45', '555.555.555-55'),
+  (6, 4, 'Boa viagem.', '2023-10-06', '678.901.234-56', '666.666.666-66');
+SELECT * FROM avaliacao;
