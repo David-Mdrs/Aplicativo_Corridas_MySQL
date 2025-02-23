@@ -1,5 +1,10 @@
--- Banco de dados: app_corridas
--- Descrição: Armazena dados do aplicativo de corridas.
+/*
+  =======================================================
+  Arquivo: Inserir_Dados.sql
+  Descrição: Scripts para inserção de dados iniciais nas tabelas do banco de dados app_corridas.
+             Inclui dados que se relacionam.
+  =======================================================
+*/
 
 -- Inserindo dados na tabela Passageiro
 INSERT INTO passageiro (cpf, nome, telefone) VALUES

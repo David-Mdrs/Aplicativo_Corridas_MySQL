@@ -1,6 +1,22 @@
--- Banco de dados: app_corridas
--- Descrição: Armazena dados do aplicativo de corridas.
+/*
+  =======================================================
+  Banco de dados: app_corridas
+  Descrição: Sistema de gerenciamento de corridas para um aplicativo de transporte.
+             Armazena dados de passageiros, motoristas, veículos, corridas, pagamentos,
+             avaliações e localizações.
+  Autor: David Medeiros
+  Data de Criação: 14/02/2025
+  Versão: 1.0
+  =======================================================
+*/
 
+/*
+  =======================================================
+  Arquivo: Criar_Tabelas.sql
+  Descrição: Scripts para criação das tabelas e definição de chaves primárias,
+             estrangeiras e restrições do banco de dados app_corridas.
+  =======================================================
+*/
 
 -- Criando novo banco de dados
 CREATE DATABASE IF NOT EXISTS app_corridas;
