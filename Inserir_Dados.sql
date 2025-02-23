@@ -45,3 +45,13 @@ INSERT INTO avaliacao (id_avaliacao, nota, comentario, data_avaliacao, cpf_motor
   (5, 2, 'Não gostei.', '2023-10-05', '567.890.123-45', '555.555.555-55'),
   (6, 4, 'Boa viagem.', '2023-10-06', '678.901.234-56', '666.666.666-66');
 SELECT * FROM avaliacao;
+
+-- Inserindo dados na tabela Localizacao
+INSERT INTO localizacao (id_localizacao, latitude, longitude, bairro, rua, numero, cpf_motorista, cpf_passageiro, id_corrida) VALUES
+  (1, -23.550520, -46.633308, 'Centro', 'Rua Augusta', 100, '123.456.789-01', '111.111.111-11', 1),
+  (2, -23.563000, -46.654000, 'Pinheiros', 'Rua dos Pinheiros', 200, '234.567.890-12', '222.222.222-22', 2),
+  (3, -23.570000, -46.690000, 'Vila Madalena', 'Rua Aspicuelta', 300, '345.678.901-23', '333.333.333-33', 3),
+  (4, -23.580000, -46.680000, 'Itaim Bibi', 'Avenida Brigadeiro Faria Lima', 400, '456.789.012-34', '444.444.444-44', 4),
+  (5, -23.590000, -46.670000, 'Moema', 'Avenida Ibirapuera', 500, '567.890.123-45', '555.555.555-55', 5),
+  (6, -23.600000, -46.660000, 'Jardins', 'Rua Oscar Freire', 600, '678.901.234-56', '666.666.666-66', 6);
+SELECT * FROM localizacao;
