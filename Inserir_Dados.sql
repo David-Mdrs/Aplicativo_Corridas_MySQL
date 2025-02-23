@@ -65,3 +65,13 @@ INSERT INTO pagamento (id_pagamento, valor, forma_pagamento, status, cpf_passage
   (5, 40.00, 'Cartão de crédito', 'Cancelado', '555.555.555-55'),
   (6, 35.25, 'Pix', 'Pago', '666.666.666-66');
 SELECT * FROM pagamento;
+
+-- Inserindo dados na tabela Corrida
+INSERT INTO corrida (id_corrida, distancia, valor, status, cpf_motorista, id_pagamento) VALUES
+  (1, 5.2, 25.50, 'Finalizada', '123.456.789-01', 1),
+  (2, 6.0, 30.00, 'Finalizada', '234.567.890-12', 2),
+  (3, 4.5, 20.75, 'Cancelada', '345.678.901-23', 3),
+  (4, 3.0, 15.00, 'Finalizada', '456.789.012-34', 4),
+  (5, 8.0, 40.00, 'Cancelada', '567.890.123-45', 5),
+  (6, 7.5, 35.25, 'Finalizada', '678.901.234-56', 6);
+SELECT * FROM corrida;
