@@ -55,3 +55,13 @@ INSERT INTO localizacao (id_localizacao, latitude, longitude, bairro, rua, numer
   (5, -23.590000, -46.670000, 'Moema', 'Avenida Ibirapuera', 500, '567.890.123-45', '555.555.555-55', 5),
   (6, -23.600000, -46.660000, 'Jardins', 'Rua Oscar Freire', 600, '678.901.234-56', '666.666.666-66', 6);
 SELECT * FROM localizacao;
+
+-- Inserindo dados na tabela Pagamento
+INSERT INTO pagamento (id_pagamento, valor, forma_pagamento, status, cpf_passageiro) VALUES
+  (1, 25.50, 'Cartão de crédito', 'Pago', '111.111.111-11'),
+  (2, 30.00, 'Pix', 'Pago', '222.222.222-22'),
+  (3, 20.75, 'Dinheiro', 'Pendente', '333.333.333-33'),
+  (4, 15.00, 'Cartão de débito', 'Pago', '444.444.444-44'),
+  (5, 40.00, 'Cartão de crédito', 'Cancelado', '555.555.555-55'),
+  (6, 35.25, 'Pix', 'Pago', '666.666.666-66');
+SELECT * FROM pagamento;
