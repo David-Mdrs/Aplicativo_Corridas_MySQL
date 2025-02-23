@@ -25,3 +25,13 @@ INSERT INTO motorista (cpf, nome, telefone, cnh, avaliacao_media, status) VALUES
   ('567.890.123-45', 'Lucas Costa', '51987654321', '56789012345678901234', 4.7, 'Ativo'),
   ('678.901.234-56', 'Patrícia Almeida', '61987654321', '67890123456789012345', 4.0, 'Inativo');
 SELECT * FROM motorista;
+
+-- Inserindo dados na tabela Veiculo
+INSERT INTO veiculo (renavam, placa, modelo, cor, capacidade, cpf_motorista) VALUES
+  ('12345678901', 'ABC-1234', 'Fiesta', 'Preto', 4, '123.456.789-01'),
+  ('23456789012', 'DEF-5678', 'Civic', 'Branco', 5, '234.567.890-12'),
+  ('34567890123', 'GHI-9012', 'Corolla', 'Prata', 5, '345.678.901-23'),
+  ('45678901234', 'JKL-3456', 'Onix', 'Vermelho', 4, '456.789.012-34'),
+  ('56789012345', 'MNO-7890', 'HB20', 'Azul', 5, '567.890.123-45'),
+  ('67890123456', 'PQR-1234', 'Cruze', 'Cinza', 4, '678.901.234-56');
+SELECT * FROM veiculo;
