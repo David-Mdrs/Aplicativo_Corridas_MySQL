@@ -38,7 +38,8 @@ CREATE TABLE IF NOT EXISTS motorista(
     telefone VARCHAR(13),
     cnh VARCHAR(20) NOT NULL,
     avaliacao_media DECIMAL(2,1) NOT NULL CHECK (avaliacao_media BETWEEN 0 AND 5),
-    status ENUM("Ativo", "Inativo") NOT NULL
+    status VARCHAR(11) NOT NULL,
+    CHECK (status IN ('Ativo', 'Inativo'))
 );
 DESC motorista;
 
@@ -82,9 +83,11 @@ DESC localizacao;
 CREATE TABLE IF NOT EXISTS pagamento(
     id_pagamento INT PRIMARY KEY,
     valor DECIMAL(5,2) NOT NULL,
-    forma_pagamento ENUM("Dinheiro", "Cartão de crédito", "Cartão de débito", "Pix") NOT NULL,
-    status ENUM("Pendente", "Pago", "Cancelado") NOT NULL,
-    cpf_passageiro VARCHAR(11)
+    forma_pagamento VARCHAR(20) NOT NULL,
+    status VARCHAR(10) NOT NULL,
+    cpf_passageiro VARCHAR(11),
+    CHECK (forma_pagamento IN ('Dinheiro', 'Cartão de crédito', 'Cartão de débito', 'Pix')),
+    CHECK (status IN ('Pendente', 'Pago', 'Cancelado'))
 );
 DESC pagamento;
 
@@ -93,9 +96,10 @@ CREATE TABLE IF NOT EXISTS corrida(
     id_corrida INT PRIMARY KEY,
     distancia DECIMAL(5,2),
     valor DECIMAL(5,2),
-    status ENUM("Solicitada", "Em andamento", "Finalizada", "Cancelada"),
+    status VARCHAR(11),
     cpf_motorista VARCHAR(11),
-    id_pagamento INT
+    id_pagamento INT,
+    CHECK (status IN ('Solicitada', 'Em andamento', 'Finalizada', 'Cancelada'))
 );
 DESC corrida;
 
