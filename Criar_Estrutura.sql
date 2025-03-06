@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS motorista(
     telefone VARCHAR(13),
     cnh VARCHAR(20) NOT NULL,
     avaliacao_media DECIMAL(2,1) CHECK (avaliacao_media BETWEEN 0 AND 5),
-    status VARCHAR(11) NOT NULL,
+    status VARCHAR(11) NOT NULL DEFAULT 'Inativo',
     CHECK (status IN ('Ativo', 'Inativo'))
 );
 DESC motorista;
