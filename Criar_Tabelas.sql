@@ -85,7 +85,7 @@ DESC localizacao;
 -- Tabela: Pagamento
 CREATE TABLE IF NOT EXISTS pagamento(
     id_pagamento INT PRIMARY KEY,
-    valor DECIMAL(5,2) NOT NULL,
+    valor DECIMAL(5,2),
     forma_pagamento VARCHAR(20),
     status VARCHAR(10) NOT NULL,
     cpf_passageiro VARCHAR(11),
