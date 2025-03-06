@@ -18,6 +18,9 @@
   =======================================================
 */
 
+-- Excluindo banco de dados
+DROP DATABASE app_corridas;
+
 -- Criando novo banco de dados
 CREATE DATABASE IF NOT EXISTS app_corridas;
 
@@ -37,7 +40,7 @@ CREATE TABLE IF NOT EXISTS motorista(
     nome VARCHAR(100) NOT NULL,
     telefone VARCHAR(13),
     cnh VARCHAR(20) NOT NULL,
-    avaliacao_media DECIMAL(2,1) NOT NULL CHECK (avaliacao_media BETWEEN 0 AND 5),
+    avaliacao_media DECIMAL(2,1) CHECK (avaliacao_media BETWEEN 0 AND 5),
     status VARCHAR(11) NOT NULL,
     CHECK (status IN ('Ativo', 'Inativo'))
 );
@@ -57,7 +60,7 @@ DESC veiculo;
 -- Tabela: Avaliacao
 CREATE TABLE IF NOT EXISTS avaliacao(
     id_avaliacao INT PRIMARY KEY,
-    nota INT NOT NULL,
+    nota INT,
     comentario VARCHAR(100),
     data_avaliacao DATE NOT NULL,
     cpf_motorista VARCHAR(11),
@@ -83,7 +86,7 @@ DESC localizacao;
 CREATE TABLE IF NOT EXISTS pagamento(
     id_pagamento INT PRIMARY KEY,
     valor DECIMAL(5,2) NOT NULL,
-    forma_pagamento VARCHAR(20) NOT NULL,
+    forma_pagamento VARCHAR(20),
     status VARCHAR(10) NOT NULL,
     cpf_passageiro VARCHAR(11),
     CHECK (forma_pagamento IN ('Dinheiro', 'Cartão de crédito', 'Cartão de débito', 'Pix')),
@@ -110,7 +113,6 @@ CREATE TABLE IF NOT EXISTS passageiro_corrida (
     PRIMARY KEY (cpf_passageiro, id_corrida)
 );
 DESC passageiro_corrida;
-
 
 
 
