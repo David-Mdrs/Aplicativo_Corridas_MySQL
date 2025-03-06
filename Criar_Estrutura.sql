@@ -12,14 +12,14 @@
 
 /*
   =======================================================
-  Arquivo: Criar_Tabelas.sql
+  Arquivo: Criar_Estrutura.sql
   Descrição: Scripts para criação das tabelas e definição de chaves primárias,
              estrangeiras e restrições do banco de dados app_corridas.
   =======================================================
 */
 
 -- Excluindo banco de dados
-DROP DATABASE app_corridas;
+-- DROP DATABASE app_corridas;
 
 -- Criando novo banco de dados
 CREATE DATABASE IF NOT EXISTS app_corridas;
