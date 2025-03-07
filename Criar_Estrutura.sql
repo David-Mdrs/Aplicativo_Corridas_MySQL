@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS motorista(
     nome VARCHAR(100) NOT NULL,
     telefone VARCHAR(13),
     cnh VARCHAR(20) NOT NULL,
-    avaliacao_media DECIMAL(2,1) CHECK (avaliacao_media BETWEEN 0 AND 5),
+    avaliacao_media DECIMAL(2,1) DEFAULT NULL CHECK (avaliacao_media BETWEEN 0 AND 5),
     status VARCHAR(11) NOT NULL DEFAULT 'Inativo',
     CHECK (status IN ('Ativo', 'Inativo'))
 );
@@ -76,16 +76,16 @@ CREATE TABLE IF NOT EXISTS localizacao(
     bairro VARCHAR(100),
     rua VARCHAR(100),
     numero INT,
-    cpf_motorista VARCHAR(11),
-    cpf_passageiro VARCHAR(11),
-    id_corrida INT
+    cpf_motorista VARCHAR(11) DEFAULT NULL,
+    cpf_passageiro VARCHAR(11) DEFAULT NULL,
+    id_corrida INT DEFAULT NULL
 );
 DESC localizacao;
 
 -- Tabela: Pagamento
 CREATE TABLE IF NOT EXISTS pagamento(
     id_pagamento INT PRIMARY KEY,
-    valor DECIMAL(5,2),
+    valor DECIMAL(5,2) DEFAULT NULL,
     forma_pagamento VARCHAR(20),
     status VARCHAR(10) NOT NULL,
     cpf_passageiro VARCHAR(11),
@@ -99,9 +99,9 @@ CREATE TABLE IF NOT EXISTS corrida(
     id_corrida INT PRIMARY KEY,
     distancia DECIMAL(5,2),
     valor DECIMAL(5,2),
-    status VARCHAR(11),
-    cpf_motorista VARCHAR(11),
-    id_pagamento INT,
+    status VARCHAR(12) DEFAULT NULL,
+    cpf_motorista VARCHAR(11) DEFAULT NULL,
+    id_pagamento INT DEFAULT NULL,
     CHECK (status IN ('Solicitada', 'Em andamento', 'Finalizada', 'Cancelada'))
 );
 DESC corrida;

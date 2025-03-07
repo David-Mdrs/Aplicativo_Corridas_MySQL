@@ -78,12 +78,12 @@ SELECT * FROM localizacao;
 
 -- Inserindo as localizações dos passageiros
 INSERT INTO localizacao (id_localizacao, latitude, longitude, bairro, rua, numero, cpf_passageiro, id_corrida) VALUES
-    (1, -7.240000, -35.860000, 'Vila Cabral', 'Avenida Severino Cabral', 300, '39845612387', 1),
-    (2, -7.210000, -35.868000, 'Bodocongo', 'Avenida Liberdade', 400, '12345678909', 2),
-    (3, -7.205000, -35.890000, 'Catole', 'Rua Jose de Alencar', 500, '98765432100', 3),
-    (4, -7.222000, -35.882000, 'Jardim Tavares', 'Rua Tavares', 600, '45678912345', 4),
-    (5, -7.220000, -35.875000, 'Centro', 'Rua Nova', 160, '45678912345', 5),
-    (6, -7.240000, -35.860000, 'Bairro das Cidades', 'Rua das Nacoes Unidas', 220, '39845612387', 6);
+    (8, -7.240000, -35.860000, 'Vila Cabral', 'Avenida Severino Cabral', 300, '39845612387', 1),
+    (9, -7.210000, -35.868000, 'Bodocongo', 'Avenida Liberdade', 400, '12345678909', 2),
+    (10, -7.205000, -35.890000, 'Catole', 'Rua Jose de Alencar', 500, '98765432100', 3),
+    (11, -7.222000, -35.882000, 'Jardim Tavares', 'Rua Tavares', 600, '45678912345', 4),
+    (12, -7.220000, -35.875000, 'Centro', 'Rua Nova', 160, '45678912345', 5),
+    (13, -7.240000, -35.860000, 'Bairro das Cidades', 'Rua das Nacoes Unidas', 220, '39845612387', 6);
 SELECT * FROM localizacao;
 
 -- Inserindo dados na tabela N:N Passageiro e Corrida
