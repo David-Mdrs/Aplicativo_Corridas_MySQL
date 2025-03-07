@@ -58,12 +58,12 @@ SELECT * FROM corrida;
 
 -- Inserindo dados na tabela Avaliacao
 INSERT INTO avaliacao (id_avaliacao, nota, comentario, data_avaliacao, cpf_motorista, cpf_passageiro) VALUES
-    (1, 4, 'Bom serviço.', '2023-10-02', '23456789012', '39845612387'),
-    (2, 3, 'Poderia ser melhor.', '2023-10-03', '34567890123', '12345678909'),
-    (3, 4, 'Boa viagem.', '2023-10-04', '45678901234', '98765432100'),
-    (4, 5, 'Ótima viagem.', '2023-10-05', '56789012345', '45678912345'),
-    (5, 5, 'Excelente experiência!', '2023-10-06', '23456789012', '45678912345'),
-    (6, 2, 'Viagem ruim.', '2023-10-07', '34567890123', '39845612387');
+    (1, 4, 'Bom serviço.', '2025-03-02', '23456789012', '39845612387'),
+    (2, 3, 'Poderia ser melhor.', '2025-03-03', '34567890123', '12345678909'),
+    (3, 4, 'Boa viagem.', '2025-03-02', '45678901234', '98765432100'),
+    (4, 5, 'Ótima viagem.', '2025-03-05', '56789012345', '45678912345'),
+    (5, 5, 'Excelente experiência!', '2025-03-06', '23456789012', '45678912345'),
+    (6, 2, 'Viagem ruim.', '2025-03-07', '34567890123', '39845612387');
 SELECT * FROM avaliacao;
 
 -- Inserindo as localizações dos motoristas
