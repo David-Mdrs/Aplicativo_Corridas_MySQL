@@ -9,9 +9,9 @@
 */
 
 -- Motorista está criando um novo cadastro
-INSERT INTO motorista (cpf, nome, telefone, cnh) VALUES
+INSERT INTO motorista (cpf, nome, telefone, cnh) VALUES                                 -- Cadastrando usuário (motorista)
     ('12345678901', 'Fernando Souza', '13487654321', '12345678901234567890');
-INSERT INTO veiculo (renavam, placa, modelo, cor, capacidade, cpf_motorista) VALUES
+INSERT INTO veiculo (renavam, placa, modelo, cor, capacidade, cpf_motorista) VALUES     -- Cadastrando veículo
     ('62490162456', 'PQR-1234', 'Cruze', 'Cinza', 4, '12345678901');
 
 -- Visualizando
@@ -21,9 +21,9 @@ SELECT m.nome AS "motorista", v.modelo, m.status, m.avaliacao_media FROM motoris
 
 
 -- Motorista inicia o aplicativo
-INSERT INTO localizacao (id_localizacao, latitude, longitude, bairro, rua, numero, cpf_motorista) VALUES
-    (7, -7.219200, -35.881700, 'Centro', 'Rua João Pessoa', 100, '67890123456');
-UPDATE motorista SET status = 'Ativo' WHERE cpf = '12345678901';
+INSERT INTO localizacao (id_localizacao, latitude, longitude, bairro, rua, numero, cpf_motorista) VALUES    -- Iniciando localização (motorista)
+    (7, -7.219200, -35.881700, 'Centro', 'Rua João Pessoa', 100, '12345678901');
+UPDATE motorista SET status = 'Ativo' WHERE cpf = '12345678901';                                            -- Setando status para ativo
 
 -- Visualizando
 SELECT m.nome, v.modelo, m.status, m.avaliacao_media FROM motorista m JOIN veiculo v
@@ -32,15 +32,15 @@ SELECT m.nome, v.modelo, m.status, m.avaliacao_media FROM motorista m JOIN veicu
 
 
 -- Usuário está iniciando um novo pedido de corrida
-INSERT INTO corrida (id_corrida, distancia, status) VALUES (7, 3, 'Solicitada');                               -- Iniciando corrida
+INSERT INTO corrida (id_corrida, distancia, status) VALUES (7, 3, 'Solicitada');                            -- Iniciando corrida
 
-INSERT INTO localizacao (id_localizacao, latitude, longitude, bairro, rua, numero, cpf_passageiro, id_corrida) VALUES -- Localização passageiro
+INSERT INTO localizacao (id_localizacao, latitude, longitude, bairro, rua, numero, cpf_passageiro, id_corrida) VALUES -- Iniciando localização (passageiro)
     (14, -7.219200, -35.881700, 'Centro', 'Rua João Pessoa', 100, '52998224725', 7);
-INSERT INTO localizacao (id_localizacao, latitude, longitude, bairro, rua, numero, id_corrida) VALUES-- Localização destino
+INSERT INTO localizacao (id_localizacao, latitude, longitude, bairro, rua, numero, id_corrida) VALUES       -- Iniciando localização (destino)
     (15, -7.219000, -35.881000, 'Malvinas', 'Jamila', 50, 7);
 
-INSERT INTO passageiro_corrida (cpf_passageiro, id_corrida) VALUES ('52998224725', 7);                         -- Relacionar passageiro e corrida
-UPDATE corrida SET valor = 5 + (distancia * 2) WHERE id_corrida = 7;                                           -- Setando valor da corrida
+INSERT INTO passageiro_corrida (cpf_passageiro, id_corrida) VALUES ('52998224725', 7);                      -- Relacionando passageiro e corrida
+UPDATE corrida SET valor = 5 + (distancia * 2) WHERE id_corrida = 7;                                        -- Calculando valor da corrida
 
 -- Visualizando
 SELECT c.cpf_motorista AS 'motorista', p.nome AS 'passageiro', c.valor, c.status, c.id_pagamento FROM passageiro p
@@ -51,9 +51,9 @@ SELECT c.cpf_motorista AS 'motorista', p.nome AS 'passageiro', c.valor, c.status
 
 
 -- Motorista aceita corrida
-UPDATE corrida SET cpf_motorista = '12345678901' WHERE id_corrida = 7;
--- Passageiro entrou no carro
-UPDATE corrida SET status = 'Em andamento' WHERE id_corrida = 7;
+UPDATE corrida SET cpf_motorista = '12345678901' WHERE id_corrida = 7;      -- Corrida se relaciona com motorista
+UPDATE localizacao SET id_corrida = 7 WHERE cpf_motorista = '12345678901';  -- Relacionando localização da corrida e motorista
+UPDATE corrida SET status = 'Em andamento' WHERE id_corrida = 7;            -- Passageiro entrou no carro
 
 -- Visualizando
 SELECT m.nome AS 'motorista', p.nome AS 'passageiro', c.valor, c.status, c.id_pagamento FROM passageiro p
@@ -65,10 +65,10 @@ SELECT m.nome AS 'motorista', p.nome AS 'passageiro', c.valor, c.status, c.id_pa
 
 
 -- Passageiro chegou no seu destino
-INSERT INTO pagamento (id_pagamento, forma_pagamento, status, cpf_passageiro) VALUES
+INSERT INTO pagamento (id_pagamento, forma_pagamento, status, cpf_passageiro) VALUES                    -- Inicializando pagamento         
     (7, 'Pix', 'Pendente', '52998224725');
-UPDATE pagamento SET valor = (SELECT valor FROM corrida WHERE id_pagamento = 7) WHERE id_pagamento = 7;
-UPDATE corrida SET id_pagamento = 7 WHERE id_corrida = 7;
+UPDATE pagamento SET valor = (SELECT valor FROM corrida WHERE id_pagamento = 7) WHERE id_pagamento = 7; -- Setando valor com base na corrida
+UPDATE corrida SET id_pagamento = 7 WHERE id_corrida = 7;                                               -- Relacionando corrida e pagamento
 
 -- Visualizando
 SELECT m.nome AS 'motorista', p.nome AS 'passageiro', c.status AS 'corrida', pag.valor, pag.forma_pagamento,
@@ -83,8 +83,8 @@ pag.status AS 'pagamento', c.id_pagamento
 
 
 -- Passageiro fez o pagamento
-UPDATE pagamento SET status = 'Pago' WHERE id_pagamento = 7;
-UPDATE corrida SET status = 'Finalizada' WHERE id_corrida = 7;
+UPDATE pagamento SET status = 'Pago' WHERE id_pagamento = 7;        -- Atualizando status do pagamento
+UPDATE corrida SET status = 'Finalizada' WHERE id_corrida = 7;      -- Atualizando status da corrida
 
 -- Visualizando
 SELECT m.nome AS 'motorista', p.nome AS 'passageiro', c.status AS 'corrida', pag.valor, pag.forma_pagamento,
