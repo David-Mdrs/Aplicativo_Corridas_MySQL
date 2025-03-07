@@ -109,3 +109,14 @@ UPDATE motorista m SET m.avaliacao_media = (
 
 -- Visualizando
 SELECT nome, avaliacao_media FROM motorista WHERE cpf = '12345678901';
+
+
+-- Visualizando todos os dados inseridos nas tabelas
+SELECT * FROM passageiro;
+SELECT * FROM motorista;
+SELECT * FROM veiculo;
+SELECT * FROM avaliacao;
+SELECT * FROM localizacao;
+SELECT * FROM pagamento;
+SELECT * FROM corrida;
+SELECT * FROM passageiro_corrida;
