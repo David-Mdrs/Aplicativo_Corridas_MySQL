@@ -1,7 +1,9 @@
 /*
     =======================================================
     Arquivo: Nova_Corrida.sql
-    Descrição: Scripts para inserção e manipulação de uma nova corrida.
+    Descrição: Através de scripts, este arquivo simula o evento de uma corrida,
+                    desde a criação do usuário, até a avaliação final.
+               Scripts para inserção e manipulação de uma nova corrida.
                Inclui inserções, consultas e atualizações de dados.
     =======================================================
 */
@@ -63,12 +65,14 @@ SELECT m.nome AS 'motorista', p.nome AS 'passageiro', c.valor, c.status, c.id_pa
 
 
 -- Passageiro chegou no seu destino
-INSERT INTO pagamento (id_pagamento, valor, forma_pagamento, status, cpf_passageiro) VALUES
-    (7, valor, 'Pix', 'Pendente', '52998224725');
+INSERT INTO pagamento (id_pagamento, forma_pagamento, status, cpf_passageiro) VALUES
+    (7, 'Pix', 'Pendente', '52998224725');
+UPDATE pagamento SET valor = (SELECT valor FROM corrida WHERE id_pagamento = 7) WHERE id_pagamento = 7;
 UPDATE corrida SET id_pagamento = 7 WHERE id_corrida = 7;
 
 -- Visualizando
-SELECT m.nome AS 'motorista', p.nome AS 'passageiro', pag.valor,pag.forma_pagamento, pag.status 
+SELECT m.nome AS 'motorista', p.nome AS 'passageiro', c.status AS 'corrida', pag.valor, pag.forma_pagamento,
+pag.status AS 'pagamento', c.id_pagamento 
     FROM motorista m
     JOIN corrida c ON m.cpf = c.cpf_motorista
     JOIN pagamento pag ON c.id_pagamento = pag.id_pagamento
@@ -83,7 +87,8 @@ UPDATE pagamento SET status = 'Pago' WHERE id_pagamento = 7;
 UPDATE corrida SET status = 'Finalizada' WHERE id_corrida = 7;
 
 -- Visualizando
-SELECT m.nome AS 'motorista', p.nome AS 'passageiro', pag.valor,pag.forma_pagamento, pag.status 
+SELECT m.nome AS 'motorista', p.nome AS 'passageiro', c.status AS 'corrida', pag.valor, pag.forma_pagamento,
+pag.status AS 'pagamento', c.id_pagamento 
     FROM motorista m
     JOIN corrida c ON m.cpf = c.cpf_motorista
     JOIN pagamento pag ON c.id_pagamento = pag.id_pagamento
@@ -96,8 +101,6 @@ SELECT m.nome AS 'motorista', p.nome AS 'passageiro', pag.valor,pag.forma_pagame
 -- Passageiro faz avaliação
 INSERT INTO avaliacao (id_avaliacao, nota, comentario, data_avaliacao, cpf_motorista, cpf_passageiro) VALUES
     (7, 5, 'Excelente.', '2025-03-06', '12345678901', '52998224725');
-
-
 
 -- Sistema atualiza avaliação média do motorista com base na média
 UPDATE motorista m SET m.avaliacao_media = (
