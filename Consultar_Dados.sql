@@ -1,6 +1,6 @@
 /*
   =======================================================
-  Arquivo: Consultas.sql
+  Arquivo: Consultar_Dados.sql
   Descrição: Scripts para consultas do banco de dados que simulam demandas reais.
              Inclui agregações (COUNT, SUM, AVG), junções (JOIN), e filtros com HAVING e GROUP BY.
   =======================================================
