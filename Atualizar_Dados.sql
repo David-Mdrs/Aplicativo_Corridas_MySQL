@@ -19,6 +19,7 @@ DELETE FROM motorista WHERE cpf = '78901234567';
 UPDATE motorista m SET m.avaliacao_media = (
     SELECT AVG(nota) FROM avaliacao a WHERE a.cpf_motorista = m.cpf
     ) WHERE m.cpf = '56789012345';
+    
 -- Atualizando veículo do motorista
 UPDATE veiculo SET modelo = 'Civic' WHERE cpf_motorista = '56789012345';
 
