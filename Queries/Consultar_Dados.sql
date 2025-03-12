@@ -23,7 +23,7 @@ SELECT m.nome AS 'motorista', c.valor, p.forma_pagamento, p.status AS status_pag
     WHERE c.status = 'Finalizada' AND p.status = 'Pago';
 
 
--- Consultas utilizando SUM, JOIN, GROUP BY eORDER BY
+-- Consultas utilizando SUM, JOIN, GROUP BY e ORDER BY
 
 -- 3) Ganho total por motorista
 SELECT c.cpf_motorista, m.nome, SUM(c.valor) AS 'ganho_total' FROM corrida c
@@ -40,7 +40,7 @@ SELECT p.cpf, p.nome, SUM(c.valor) AS 'total_gasto' FROM corrida c
     GROUP BY pc.cpf_passageiro ORDER BY total_gasto DESC;
 
 
--- Consultas utilizando COUNT, JOIN, GROUP BY eORDER BY
+-- Consultas utilizando COUNT, JOIN, GROUP BY e ORDER BY
 
 -- 6) Total de corridas por motorista
 SELECT m.cpf, m.nome, COUNT(c.id_corrida) AS 'total_corridas' FROM motorista m

@@ -26,8 +26,9 @@ INSERT INTO localizacao (id_localizacao, latitude, longitude, bairro, rua, numer
 UPDATE motorista SET status = 'Ativo' WHERE cpf = '12345678901';                                            -- Setando status para ativo
 
 -- Visualizando
-SELECT m.nome, v.modelo, m.status, m.avaliacao_media FROM motorista m JOIN veiculo v
-    ON m.cpf = v.cpf_motorista WHERE m.cpf = '12345678901';
+SELECT m.nome, v.modelo AS 'Carro', m.status, m.avaliacao_media, l.bairro, l.rua FROM motorista m JOIN veiculo v
+    ON m.cpf = v.cpf_motorista JOIN localizacao l ON l.cpf_motorista = m.cpf
+    WHERE m.cpf = '12345678901';
 
 
 
@@ -71,7 +72,7 @@ UPDATE pagamento SET valor = (SELECT valor FROM corrida WHERE id_pagamento = 7) 
 UPDATE corrida SET id_pagamento = 7 WHERE id_corrida = 7;                                               -- Relacionando corrida e pagamento
 
 -- Visualizando
-SELECT m.nome AS 'motorista', p.nome AS 'passageiro', c.status AS 'corrida', pag.valor, pag.forma_pagamento,
+SELECT m.nome AS 'motorista', p.nome AS 'passageiro', c.status AS 'corrida', c.valor, pag.forma_pagamento,
 pag.status AS 'pagamento', c.id_pagamento 
     FROM motorista m
     JOIN corrida c ON m.cpf = c.cpf_motorista
